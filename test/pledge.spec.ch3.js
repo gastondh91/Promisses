@@ -56,11 +56,11 @@ describe('Otra promise', function(){
       promiseForThing._internalReject( theReason );
     });
 
-    // If you get "not a function" errors, think carefully about
-    // what happens when you call `.then`. What is getting added
-    // to the `handlerGroups`? What is your code trying to do with
-    // those `handlerGroups`? There is going to have to be some
-    // sort of "safety check" somewhere…
+    // Si te aparece un error como "not a function" pensa bien que
+    // pasa en la ejecución de `.then`.
+    // Que se agrega al `handlerGroups`?
+    // Que estamos tratando de hacer con `handlerGroups`?
+    // Deberiamos tener alguna clase de "safe check" por algun lado...
 
     xit('no llama a ningún success handler', function(){
       promiseForThing.then( logOops );
@@ -212,4 +212,4 @@ describe("Un metodo `.catch`", function(){
 
 });
 
-// No te olvides de `git commit`!
+// No te olvides del `git commit`!
