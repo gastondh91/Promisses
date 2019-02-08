@@ -5,11 +5,11 @@
 // Vamos a construir una libreria de promesas similar a ES6, llamada
 // pledge.js. Nuestras promesas van a llamarse "$Promise" para evitar disparar
 // código existente del browser. Para concentrarte en los conceptos, pledge.js
-// va usar muchas variables públicas y no ser obediente al standard.
+// va usar muchas variables públicas y no obedecer el standard en su totalidad.
 
-// Para ejecutar los spec, corre `npm test` en este directorio. Cuando pases un
-// test, cambia el siguiente test pendiente a activo. Este spec es iterativo y
-// opinionado; haz los tests en orden.
+// Para ejecutar los spec, corran `npm test` en este directorio. Cuando pases un
+// test, cambien el siguiente test pendiente a activo. Este spec es iterativo y
+// opinionado; hagan los tests en orden.
 
 
 
@@ -36,9 +36,9 @@ Chapter 1: Estructura básica y Cambios de Estado
 
 /* global $Promise */
 
-// Incluso antes  de las ES6 `class`, devs normalmente llamaban ciertas
+// Incluso antes de las clases de ES6, los desarrolladores JS normalmente llamaban ciertas
 // funciones como "clases". A pesar que JS no es un lenguaje basado en clases,
-// todavía tendemos hablar en terminos de constructores e instancias
+// todavía tendemos a hablar en terminos de constructores e instancias
 
 describe('La clase `$Promise`', function(){
 
@@ -46,8 +46,8 @@ describe('La clase `$Promise`', function(){
     expect( typeof $Promise ).toBe( 'function' );
   });
 
-  // El único argumento de un contructor de una promesa es una función llamada
-  // el "executor". Vamos a volver a esta función mas adelante.
+  // El único argumento de el contructor de una promesa es una función llamada
+  // "executor". Vamos a volver a esta función mas adelante.
 
   xit('puede ser llamado con una argumento de función (el "executor"), devolviendo una nueva instancia de promesa', function(){
     var executor = function () {};
@@ -83,10 +83,10 @@ describe('Una instancia de promesa', function(){
   });
 
   // Las promesas internamente tienen un estado (cambiando informacion), que a
-  // su vez afecta como se comporta. Promises son como una maquina de estado.
+  // su vez afecta como se comporta. Las Promises son como una maquina de estado.
 
 
-  // JavaScript carece algunos controles de privacidad comparado a otros
+  // JavaScript carece de algunos controles de privacidad comparado a otros
   // lenguajes. Una convención común es usar un esquema de nombres para
   // marcar un método como "privado". Comenzando métodos con un `._underscore`
   // es una señal de esto.
@@ -118,7 +118,7 @@ describe('Una instancia de promesa', function(){
       // pero por ahora sabe que la terminología de P/A+ estricto dibuja una
       // distinción entre "resolution" y "fullfillment". Normalmente una
       // promesa "resolved" esta también "fulfilled", pero en un caso
-      // particular, una promesa "resolved" es realmente "rejectes". No
+      // particular, una promesa "resolved" puede estar "rejected". No
       // tenes que saber por qué aún.
 
       promise._internalResolve();
@@ -217,7 +217,7 @@ describe('Una instancia de promesa', function(){
 // el destino de esa promesa. Recuerda, `._internalResolve` es como nosotros
 // estamos implementando nuestras promesas, pero los usuarios normalmente no
 // pretendemos que tengan acceso a eso directmente. Esto es principalmente
-// para prevenir abuso: promises son pretendidas para representar el
+// para prevenir su abuso: promises son pretendidas para representar el
 // resultado de una acción asincrónica, pero si *cualquiera* puede llamar
 // `.internalResolve`, no podemos confiar más que la promesa se coloca por
 // el async original. Dado que el executor solo corre cuando la promesa es
