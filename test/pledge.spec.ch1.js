@@ -49,7 +49,7 @@ describe('La clase `$Promise`', function(){
   // El único argumento de el contructor de una promesa es una función llamada
   // "executor". Vamos a volver a esta función mas adelante.
 
-  xit('puede ser llamado con una argumento de función (el "executor"), devolviendo una nueva instancia de promesa', function(){
+  it('puede ser llamado con una argumento de función (el "executor"), devolviendo una nueva instancia de promesa', function(){
     var executor = function () {};
     var promise = new $Promise(executor);
     expect( promise instanceof $Promise ).toBe( true );
@@ -57,7 +57,7 @@ describe('La clase `$Promise`', function(){
 
   // El chequeo de tipo imita el rigor de promesas reales de ES6
 
-  xit('arroja un error descriptivo si es llamado sin función como argumento', function(){
+  it('arroja un error descriptivo si es llamado sin función como argumento', function(){
     var nonFunctions = [null, 'bonjour', undefined, 452, {}, false];
     nonFunctions.forEach(function (nonFunction) {
       expect(callingNewPromiseWith(nonFunction)).toThrowError(
@@ -91,7 +91,7 @@ describe('Una instancia de promesa', function(){
   // marcar un método como "privado". Comenzando métodos con un `._underscore`
   // es una señal de esto.
 
-  xit('comienza con un estado interno "pending"', function(){
+  it('comienza con un estado interno "pending"', function(){
     expect( promise._state ).toBe( 'pending' );
   });
 
@@ -99,11 +99,11 @@ describe('Una instancia de promesa', function(){
   // y rejector público. Sin embargo, esconder estas implementaciones puede
   // ser complicado.
 
-  xit('tiene un método de instancia `._internalResolve` ', function () {
+  it('tiene un método de instancia `._internalResolve` ', function () {
     expect( typeof promise._internalResolve ).toBe( 'function' );
   });
 
-  xit('tiene un métido de instancia `._internalReject`', function () {
+  it('tiene un métido de instancia `._internalReject`', function () {
     expect( typeof promise._internalReject ).toBe( 'function' );
     expect( promise._internalReject ).not.toBe( promise._internalResolve );
   });
@@ -112,7 +112,7 @@ describe('Una instancia de promesa', function(){
 
   describe('resolviendo ', function(){
 
-    xit('cambia el estado de la promesa a "fulfilled"', function(){
+    it('cambia el estado de la promesa a "fulfilled"', function(){
 
       // ¿Por qué no "resolved"? Esto va a ser visto en detalle en el Ch. 5,
       // pero por ahora sabe que la terminología de P/A+ estricto dibuja una
@@ -125,7 +125,7 @@ describe('Una instancia de promesa', function(){
       expect( promise._state ).toBe( 'fulfilled' );
     });
 
-    xit('puede enviar data a la promesa para almacenamiento', function(){
+    it('puede enviar data a la promesa para almacenamiento', function(){
       var someData = { name: 'Harry Potter' };
       promise._internalResolve( someData );
       expect( promise._value ).toBe( someData );
@@ -133,7 +133,7 @@ describe('Una instancia de promesa', function(){
 
     // Pista: usa el estado pending.
 
-    xit('no afecta una promesa ya completada', function(){
+    it('no afecta una promesa ya completada', function(){
       var data1 = { name: 'Harry Potter' };
       var data2 = { name: 'Gandalf' };
       promise._internalResolve( data1 );
@@ -141,7 +141,7 @@ describe('Una instancia de promesa', function(){
       expect( promise._value ).toBe( data1 );
     });
 
-    xit('funciona hasta con valores falsos', function(){
+    it('funciona hasta con valores falsos', function(){
       var data1; // undefined; podría funcionar también con null, 0, false, etc.
       var data2 = 'oops!';
       promise._internalResolve( data1 );
@@ -156,12 +156,12 @@ describe('Una instancia de promesa', function(){
     // Rejection y fulfillment son virtualmente idénticas. esto no deberia
     // requerir mucho mas código
 
-    xit('cambia el estado de la promesa a "rejected"', function(){
+    it('cambia el estado de la promesa a "rejected"', function(){
       promise._internalReject();
       expect( promise._state ).toBe( 'rejected' );
     });
 
-    xit('puede enviar una razón a la promesa para almacenamiento', function(){
+    it('puede enviar una razón a la promesa para almacenamiento', function(){
       var myReason = { error: 'bad request' };
       promise._internalReject( myReason );
       expect( promise._value ).toBe( myReason );
