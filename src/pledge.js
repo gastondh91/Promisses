@@ -37,7 +37,7 @@ $Promise.prototype.then = function(s, e){
 
 $Promise.prototype._callHandlers = function(data){
     for(let i = 0; i<this._handlerGroups.length; i++){
-        this._handlerGroups[i]._callHandlers()
+        this._handlerGroups[i].successCb(data)
     }
 
 }
